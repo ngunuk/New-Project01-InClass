@@ -14,6 +14,7 @@ const app = {
 
   renderListItem(flick) {
     const item = document.createElement('li')
+    item.dataset.id = flick.id
     item.textContent = flick.name
     return item
   },
@@ -38,7 +39,7 @@ app.init({
   formSelector: '#flickForm',
   listSelector: '#flickList',
 })
-  /*
+/*
   id: NaN  ==== not a number
   => --when you use this, the outcome results in what we think it will be
 
