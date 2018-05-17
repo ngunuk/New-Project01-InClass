@@ -39,6 +39,7 @@ app.init({
   formSelector: '#flickForm',
   listSelector: '#flickList',
 })
+
 /*
   id: NaN  ==== not a number
   => --when you use this, the outcome results in what we think it will be
@@ -51,5 +52,4 @@ app.init({
 
   --renderListItem ==append it to == this.list.appendChild(item)
     
-
-  
+*/
