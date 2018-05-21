@@ -1,5 +1,5 @@
-const app = {
-  init(selectors) {
+class App {
+  constructor(selectors) {
     this.flicks = []
     this.max = 0
     this.list = document.querySelector(selectors.listSelector)
@@ -11,7 +11,16 @@ const app = {
         ev.preventDefault()
         this.handleSubmit(ev)
       })
-  },
+  }
+
+  removeFlick(item, flick, ev) {
+    // remove from the DOM
+    item.remove()
+
+    //remove from the array
+    const i = this.flicks.indexOf(flick)
+    this.flicks.splice(i, 1)
+  }
 
   renderListItem(flick) {
     const item = this.template.cloneNode(true)
@@ -21,8 +30,15 @@ const app = {
       .querySelector('.flickName')
       .textContent = flick.name
 
+    item
+      .querySelector('.remove.button')
+      .addEventListener(
+        'click',
+        this.removeFlick.bind(this, item, flick)
+      )
+
     return item
-  },
+  }
 
   handleSubmit(ev) {
     const f = ev.target
@@ -37,26 +53,11 @@ const app = {
     this.list.insertBefore(item, this.list.firstChild)
 
     f.reset()
-  },
+  }
 }
 
-app.init({
+const app = new App({
   formSelector: '#flickForm',
   listSelector: '#flickList',
   templateSelector: '.flick.template',
 })
-
-
-/*
-  id: NaN  ==== not a number
-  => --when you use this, the outcome results in what we think it will be
-
-  To check the list ==== app.list
-  now we got a list; append these
-  --renderListItem:function(){
-    return item
-  }
-
-  --renderListItem ==append it to == this.list.appendChild(item)
-    
-*/
